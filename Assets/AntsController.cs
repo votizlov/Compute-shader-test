@@ -11,7 +11,8 @@ public class AntsController : MonoBehaviour
 
     [SerializeField] private RawImage _rawImage;
     [SerializeField] private int numOfAgents = 1;
-    private float[] agentsData = new []{10f,10f,0f};
+    [SerializeField] private float moveSpeed = 0.01f;
+    private float[] agentsData = new []{10f,10f,0f,20f,20f,0f,30f,30f,0f,};
 
     private RenderTexture _renderTexture;
     private ComputeBuffer computeBuffer;
@@ -21,11 +22,14 @@ public class AntsController : MonoBehaviour
         Agent a = new Agent();
         Debug.Log(System.Runtime.InteropServices.Marshal.SizeOf(a));
         _renderTexture = new RenderTexture(192,108,24);
+        _renderTexture.filterMode = FilterMode.Point;
         _renderTexture.enableRandomWrite = true;
         _renderTexture.Create();
         _rawImage.texture = _renderTexture;
         
         _shader.SetTexture(0,"Result",_renderTexture);
+        _shader.SetTexture(1,"Result",_renderTexture);
+        _shader.SetFloat("moveSpeed",moveSpeed);
         _shader.SetInt("width", _renderTexture.width);
         _shader.SetInt("height", _renderTexture.height);
         _shader.SetInt("numOfAgents",numOfAgents);
@@ -39,6 +43,7 @@ public class AntsController : MonoBehaviour
         _shader.SetFloat("deltaTime",Time.deltaTime);
         
         _shader.Dispatch(0,_renderTexture.width/8,_renderTexture.height/8,1);
+        _shader.Dispatch(1,_renderTexture.width/8,_renderTexture.height/8,1);
     }
 
     private void OnGUI()

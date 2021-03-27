@@ -1,5 +1,7 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
 #pragma kernel CSMain
+#pragma kernel Fade
+#pragma kernel Blur
 
 struct Agent{
     float2 position;
@@ -9,8 +11,8 @@ struct Agent{
 // with cs.SetTexture
 RWTexture2D<float4> Result;
 RWStructuredBuffer<Agent> agents; 
-uint height;
-uint width;
+int height;
+int width;
 uint numAgents;
 float deltaTime;
 float PI = 3.14;
@@ -29,9 +31,10 @@ uint hash(uint state){
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-//if(id.x < 0 || id.x >= width || id.y < 0 || id.y >= height) {return;}
+if(id.x < 0 || id.x >= width || id.y < 0 || id.y >= height) {return;}
 
-    if (id.x >= numAgents){return;}
+    //if (id.x >= numAgents){return;}
+    //Result[id.xy] = 1;
     
     Agent agent = agents[id.x];
     uint random = hash(agent.position.y * width + agent.position.x + hash(id.x));
@@ -44,11 +47,39 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(newPos.x < 0 || newPos.x >= width || newPos.y < 0 || newPos.y >= height) {
         newPos.x = min(width-0.01,max(0,newPos.x));
         newPos.y = min(height-0.01, max(0,newPos.y));
-        agents[id.x].angle = 0.5 * 2 * PI;
+        agents[id.x].angle = random/4294967295.0 * 360 * 2 * PI;
     }*/
+
+    if(newPos.x <0)
+    {
+        agents[id.x].angle = random/4294967295.0;
+    } else
+    if(newPos.y <0)
+    {
+        agents[id.x].angle = random/4294967295.0* 15;
+    }else
+    if(newPos.x >= width)
+    {
+        agents[id.x].angle = random/4294967295.0 * -1;//-15;
+    }else
+    if(newPos.y >= height)
+    {
+        agents[id.x].angle = random/4294967295.0* -15;
+    }
     
     agents[id.x].position = newPos;
     Result[int2(newPos.x,newPos.y)] = 1;
-    
     //Result[id.xy] = 1;
+}
+
+[numthreads(8,8,1)]
+void Fade(uint3 id : SV_DispatchThreadID)
+{
+    Result[id.xy] = Result[id.xy]-0.01;
+}
+
+[numthreads(8,8,1)]
+void Blur(uint3 id : SV_DispatchThreadID)
+{
+    
 }

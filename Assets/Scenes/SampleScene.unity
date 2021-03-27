@@ -563,7 +563,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shader: {fileID: 7200000, guid: 5c5de88e005565a47887d85d3bd44787, type: 3}
   _rawImage: {fileID: 953505620}
-  numOfAgents: 1
+  numOfAgents: 3
+  moveSpeed: 10
 --- !u!4 &2115697011
 Transform:
   m_ObjectHideFlags: 0
