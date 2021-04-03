@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Compute-shader-test.-2131130711.00" t="ExcludeRecursive" />
-    <e p="C:\Users\User\Documents\GitHub\Compute-shader-test" t="IncludeRecursive">
+    <e p="C:\Users\Drugo\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Drugo\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Compute-shader-test.536536987.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Drugo\Downloads\TestProject\TestProject\TestProject1\antsStuff\Compute-shader-test" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="AntsController.cs" t="Include" />

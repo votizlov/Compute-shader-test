@@ -191,7 +191,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -419,7 +419,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -563,8 +563,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shader: {fileID: 7200000, guid: 5c5de88e005565a47887d85d3bd44787, type: 3}
   _rawImage: {fileID: 953505620}
-  numOfAgents: 3
-  moveSpeed: 10
+  numOfAgents: 2000000
+  moveSpeed: 2
+  sensorSize: 4
+  steeringSpeed: 0.03
+  isCircleInit: 1
+  height: 1920
+  width: 1080
+  startX: 540
+  startY: 960
+  colors:
+  - 0
+  - 1
+  - 0
+  - 1
 --- !u!4 &2115697011
 Transform:
   m_ObjectHideFlags: 0
